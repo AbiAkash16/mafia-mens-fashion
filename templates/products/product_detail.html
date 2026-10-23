@@ -1,0 +1,122 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ product.name }} | MAFIA</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        MAFIA
+    </div>
+
+    <ul class="nav-links">
+        <a href="{% url 'my_orders' %}">My Orders 📦</a>
+
+        <li>
+            <a href="{% url 'home' %}">HOME</a>
+        </li>
+
+        <li>
+            <a href="#">SHOP</a>
+        </li>
+
+        <li>
+            <a href="#">NEW ARRIVALS</a>
+        </li>
+
+        <li>
+            <a href="#">COLLECTIONS</a>
+        </li>
+
+    </ul>
+
+    <div class="nav-icons">
+        <span>⌕</span>
+        <span>♡</span>
+        <span>🛒</span>
+    </div>
+
+</header>
+
+
+<section class="product-detail">
+
+    <div class="detail-image">
+
+        {% if product.image %}
+
+            <img src="{{ product.image.url }}"
+                 alt="{{ product.name }}">
+
+        {% else %}
+
+            <span>👕</span>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="detail-info">
+
+        <p class="category">
+            {{ product.get_category_display }}
+        </p>
+
+        <h1>{{ product.name }}</h1>
+
+        <h2>₹{{ product.price }}</h2>
+
+        <p>
+            {{ product.description }}
+        </p>
+
+        <p>
+            <strong>Size:</strong>
+            {{ product.size }}
+        </p>
+
+        <p>
+            <strong>Color:</strong>
+            {{ product.color }}
+        </p>
+
+        <p>
+            <strong>Stock:</strong>
+            {{ product.stock }}
+        </p>
+
+        <button class="add-cart-btn">
+            ADD TO CART
+        </button>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>
+<form method="post" action="{% url 'add_to_cart' product.id %}">
+    {% csrf_token %}
+
+    <button type="submit" class="add-cart-btn">
+        🛒 Add to Cart
+    </button>
+</form>

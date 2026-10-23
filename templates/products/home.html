@@ -1,0 +1,470 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>MAFIA | Men's Fashion</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+ <nav class="main-navbar">
+
+        <div class="brand-logo">
+            <a href="{% url 'home' %}">
+                MAFIA<span>.</span>
+            </a>
+        </div>
+
+        <div class="nav-menu">
+
+            <a href="{% url 'home' %}" class="nav-item">
+                🏠 Home
+            </a>
+
+            <div class="category-dropdown">
+                <button class="nav-item category-btn">
+                    📂 Categories ▾
+                </button>
+
+                <div class="dropdown-menu">
+                    <a href="?category=T-Shirts">👕 T-Shirts</a>
+                    <a href="?category=Shirts">👔 Shirts</a>
+                    <a href="?category=Jeans">👖 Jeans</a>
+                    <a href="?category=Jackets">🧥 Jackets</a>
+                    <a href="?category=Hoodies">🧥 Hoodies</a>
+                </div>
+            </div>
+
+            <a href="?category=T-Shirts" class="nav-item">
+                👕 T-Shirts
+            </a>
+
+            <a href="?category=Shirts" class="nav-item">
+                👔 Shirts
+            </a>
+
+            <a href="?category=Jeans" class="nav-item">
+                👖 Jeans
+            </a>
+
+        </div>
+        
+
+        <!-- SEARCH -->
+        <form method="GET" action="{% url 'home' %}" class="search-box">
+
+            <input
+                type="text"
+                name="q"
+                placeholder="Search men's fashion..."
+            >
+
+            <button type="submit">🔍</button>
+
+        </form>
+
+        <!-- RIGHT MENU -->
+       <div class="nav-actions">
+
+    <a href="{% url 'my_orders' %}" class="nav-action">
+        📦
+        <span>Orders</span>
+    </a>
+
+    <a href="{% url 'cart' %}" class="nav-action cart-icon">
+        🛒
+        <span>Cart</span>
+    </a>
+
+    {% if user.is_authenticated %}
+
+        <a href="{% url 'logout' %}" class="nav-action">
+            👤 {{ user.username }}
+        </a>
+
+        <a href="{% url 'logout' %}" class="nav-action">
+            🚪 Logout
+        </a>
+
+    {% else %}
+
+        <a href="{% url 'login' %}" class="nav-action">
+            👤 Login
+        </a>
+
+        <a href="{% url 'register' %}" class="nav-action">
+            ✨ Register
+        </a>
+
+    {% endif %}
+
+</div>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+
+        <div class="hero-content">
+
+            <p class="hero-small">
+                NEW SEASON • 2026 COLLECTION
+            </p>
+
+            <h1>
+                STYLE<br>
+                THAT<br>
+                <span>DEFINES<br>
+                YOU.</span>
+            </h1>
+
+            <p class="hero-description">
+                Discover premium men's fashion designed for
+                confidence, comfort and everyday style.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="?category=T-Shirts" class="hero-btn primary">
+                    Shop T-Shirts
+                </a>
+
+                <a href="?category=Shirts" class="hero-btn secondary">
+                    Explore Shirts
+                </a>
+
+            </div>
+
+        </div>
+        <div class="hero-visual">
+
+    <div class="fashion-circle"></div>
+
+    <div class="fashion-card">
+        <div class="fashion-card-text">
+            <span>MAFIA</span>
+            <h2>MEN'S<br>COLLECTION</h2>
+            <p>2026</p>
+        </div>
+    </div>
+
+</div>
+
+    </section>
+<!-- Search -->
+<form method="GET" action="{% url 'home' %}" class="nav-search">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search men's fashion..."
+        value="{{ request.GET.search|default:'' }}"
+    >
+
+    <button type="submit">
+        🔍
+    </button>
+
+</form>
+
+<!-- Right Side -->
+<div class="nav-actions">
+
+    <a href="{% url 'my_orders' %}" class="nav-action">
+        📦
+        <span>Orders</span>
+    </a>
+
+    <a href="{% url 'cart' %}" class="nav-action cart-icon">
+        🛒
+        <span>Cart</span>
+    </a>
+
+</div>
+
+
+</nav>
+
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-image">
+                👔
+            </div>
+
+            <div class="product-info">
+
+                <h3>Premium White Shirt</h3>
+
+                <p>Slim Fit</p>
+
+                <div class="price">
+                    ₹1,299
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-image">
+                👖
+            </div>
+
+            <div class="product-info">
+
+                <h3>Urban Blue Jeans</h3>
+
+                <p>Regular Fit</p>
+
+                <div class="price">
+                    ₹1,599
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🧥
+            </div>
+
+            <div class="product-info">
+
+                <h3>Classic Denim Jacket</h3>
+
+                <p>Modern Fit</p>
+
+                <div class="price">
+                    ₹1,999
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NEWSLETTER -->
+ <!-- =========================================
+     FEATURED COLLECTION
+========================================= -->
+
+<section class="featured-section">
+
+    <div class="section-heading">
+        <span>MAFIA COLLECTION</span>
+        <h2>Featured Products</h2>
+        <p>Discover our latest men's fashion collection.</p>
+    </div>
+
+    <div class="featured-grid">
+
+        <!-- PRODUCT 1 -->
+        <div class="fashion-product">
+
+            <div class="product-image">
+                <span class="product-badge">NEW</span>
+
+                <div class="product-placeholder">
+                    👕
+                </div>
+            </div>
+
+            <div class="product-details">
+
+                <p class="product-category">T-SHIRTS</p>
+
+                <h3>Classic Black T-Shirt</h3>
+
+                <div class="product-rating">
+                    ★★★★★
+                    <span>(24)</span>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>₹799</strong>
+
+                    <a href="{% url 'product_detail' 1 %}" class="view-product">
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 2 -->
+        <div class="fashion-product">
+
+            <div class="product-image">
+                <span class="product-badge">TRENDING</span>
+
+                <div class="product-placeholder">
+                    👔
+                </div>
+            </div>
+
+            <div class="product-details">
+
+                <p class="product-category">SHIRTS</p>
+
+                <h3>Premium Casual Shirt</h3>
+
+                <div class="product-rating">
+                    ★★★★★
+                    <span>(18)</span>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>₹999</strong>
+
+                    <a href="{% url 'product_detail' 2 %}" class="view-product">
+                         View →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 3 -->
+        <div class="fashion-product">
+
+            <div class="product-image">
+                <span class="product-badge">POPULAR</span>
+
+                <div class="product-placeholder">
+                    👖
+                </div>
+            </div>
+
+            <div class="product-details">
+
+                <p class="product-category">JEANS</p>
+
+                <h3>Modern Slim Fit Jeans</h3>
+
+                <div class="product-rating">
+                    ★★★★★
+                    <span>(31)</span>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>₹1,299</strong>
+
+                    <a href="{% url 'product_detail' 3 %}" class="view-product">
+                         View →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 4 -->
+        <div class="fashion-product">
+
+            <div class="product-image">
+                <span class="product-badge">SALE</span>
+
+                <div class="product-placeholder">
+                    🧥
+                </div>
+            </div>
+
+            <div class="product-details">
+
+                <p class="product-category">JACKETS</p>
+
+                <h3>Urban Casual Jacket</h3>
+
+                <div class="product-rating">
+                    ★★★★★
+                    <span>(16)</span>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>₹1,599</strong>
+
+                    <a  href="{% url 'product_detail' 4 %}" class="view-product">
+    
+  
+                        View →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="newsletter">
+
+    <h2>Stay In Style</h2>
+
+    <p>
+        Get new arrivals and exclusive offers
+        directly in your inbox.
+    </p>
+
+    <a href="#" class="shop-btn">
+        JOIN MAFIA
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 MAFIA. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
