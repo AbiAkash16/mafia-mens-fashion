@@ -83,13 +83,27 @@ WSGI_APPLICATION = 'config.wsgi.application'
 import dj_database_url
 import os
 
-if os.environ.get("DATABASE_URL"):
+if os.environ.get("AIVEN_MYSQL_HOST"):
     DATABASES = {
-        "default": dj_database_url.config(
-            conn_max_age=600,
-            conn_health_checks=True,
-        )
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": os.environ.get("AIVEN_MYSQL_DATABASE"),
+            "USER": os.environ.get("AIVEN_MYSQL_USER"),
+            "PASSWORD": os.environ.get("AIVEN_MYSQL_PASSWORD"),
+            "HOST": os.environ.get("AIVEN_MYSQL_HOST"),
+            "PORT": os.environ.get("AIVEN_MYSQL_PORT", "3306"),
+            "OPTIONS": {
+                "ssl": {
+                    "ca": (
+                        "/etc/secrets/ca.pem"
+                        if os.environ.get("RENDER")
+                        else str(BASE_DIR / "certs" / "ca.pem")
+                    ),
+                },
+            },
+        }
     }
+    
 else:
     DATABASES = {
         "default": {
