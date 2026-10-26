@@ -80,7 +80,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 
-import dj_database_url
+
+# Database
 import os
 
 if os.environ.get("AIVEN_MYSQL_HOST"):
@@ -103,7 +104,6 @@ if os.environ.get("AIVEN_MYSQL_HOST"):
             },
         }
     }
-    
 else:
     DATABASES = {
         "default": {
@@ -115,7 +115,6 @@ else:
             "PORT": "3306",
         }
     }
-
 
 
 
